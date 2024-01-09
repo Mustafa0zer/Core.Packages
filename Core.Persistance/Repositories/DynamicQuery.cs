@@ -20,4 +20,8 @@ public class DynamicQuery
         Filter = filter;
         Sort = sort; 
     }
+
+    //select * from cars where unitPrice < 100 and (transmission = 1 or ...)  standart string builder mantığı ile çalışılır.
+    //p=>p.unitPrice < 100 && ...    system dynamic.core string builder mantığıyla linq gibi yazım yapar
+    //
 }
