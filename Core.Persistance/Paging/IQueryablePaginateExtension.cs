@@ -18,6 +18,7 @@ namespace Core.Persistance.Paging
                 Index = index,
                 Count = count,
                 Size = size,
+                Items = items,
                 Pages = (int)Math.Ceiling(count / (double)size)
             };
             return list;
