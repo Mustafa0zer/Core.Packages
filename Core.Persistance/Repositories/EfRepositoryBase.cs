@@ -272,9 +272,9 @@ public class EfRepositoryBase<TEntity,TEntityId,TContext> : IAsyncRepository<TEn
     }
     private async Task setEntityAsSoftDeletedAsync(IEntityTimestamps entity)
     {
-        if (entity.DeleteDate.HasValue)
+        if (entity.DeletedDate.HasValue)
             return;
-        entity.DeleteDate = DateTime.UtcNow;
+        entity.DeletedDate = DateTime.UtcNow;
 
         var navigations = Context
             .Entry(entity)
@@ -330,7 +330,7 @@ public class EfRepositoryBase<TEntity,TEntityId,TContext> : IAsyncRepository<TEn
             ?? throw new InvalidOperationException("CreateQuery<TElement> method is not found in IQueryProvider.");
         var queryProviderQuery =
             (IQueryable<object>)createQueryMethod.Invoke(query.Provider, parameters: new object[] { query.Expression })!;
-        return queryProviderQuery.Where(x => !((IEntityTimestamps)x).DeleteDate.HasValue);
+        return queryProviderQuery.Where(x => !((IEntityTimestamps)x).DeletedDate.HasValue);
     }
     protected async Task SetEntityAsDeletedAsync(IEnumerable<TEntity> entities, bool permanent)
     {

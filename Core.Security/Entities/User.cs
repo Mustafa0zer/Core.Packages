@@ -1,4 +1,5 @@
 ﻿using Core.Persistance.Repositories;
+using Core.Security.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ public class User:Entity<int>
     public byte[] PasswordHash { get; set; }
     public bool IsActive { get; set; }
     public bool IsDeleted { get; set; }
+    public AuthenticatorType AuthenticatorType { get; set; }
     public ICollection<UserOperationClaim> UserOperationClaims { get; set; } = null!;
     public ICollection<RefreshToken> RefreshTokens { get; set; } = null!;
     public ICollection<OtpAuthenticator> OtpAuthenticators { get; set; } = null!;
